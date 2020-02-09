@@ -1,0 +1,38 @@
+Image Segmentation:- Partioning image into set of pixels such that similar kind of pixels hold 
+similar attributes and values.
+
+Image Thresholding:-It is a type of image segmentation that converts a grayscale image into binary image.
+Diffrent type of thresholding:-
+1.Simple thresholding:- cv2.THRESH_BINARY :- if pixel< threshold_value:
+                                                    pixel=0
+                                              else  pixel=1
+cv2.THRESH_BINARY_INV:- if pixel< threshold_value:
+                                                    pixel=1
+                                              else  pixel=0
+cv2.THRESH_TOZERO:-
+                  if pixel < th     pixel=0
+                  else pixel=pixel
+cv2.THRESH_TOZERO_INV
+                  if pixel<th        pixel=pixel
+                   else pixel=th
+2.Adaptive
+3.OTSU's thresholding
+Generally we use an arbitrary value as threholding value, to improve the
+accurate selection of this thresholding value, we use otsu's thresholding
+Biodal image(an image which histogram contains 2 peaks), so approximate 
+threshold value as middle of both peak values.
+
+function:- cv2.THRESH_OTSU()
+ret,th = cv2.threshold(img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+1st arg- image matrix
+2nd arg- any random threshold value between 0 to 255
+3rd arg- the value to be assigned if pixel value is more than threshold value
+4th arg- thresholding function
+ret- returned threshold value
+th- thresholded image
+
+Functioning of OTSU's Binarization:-
+Calculate probability, mean and variance of t-thresholded images 
+and minimize weigthed within class variance
+  varw(t)=varf(t)*sumofpixels(1,t)+varb(t)*sumofpixels(t+1,n)
+   
