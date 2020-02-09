@@ -10,16 +10,16 @@ cv2.THRESH_BINARY_INV:- if pixel< threshold_value:
                                                     pixel=1
                                               else  pixel=0
 cv2.THRESH_TOZERO:-
-                  if pixel < th     pixel=0
-                  else pixel=pixel
+                         if pixel < th     pixel=0
+                                              else pixel=pixel
 cv2.THRESH_TOZERO_INV
-                  if pixel<th        pixel=pixel
-                   else pixel=th
+                         if pixel<th        pixel=pixel
+                                              else pixel=th
 2.Adaptive
 3.OTSU's thresholding
 Generally we use an arbitrary value as threholding value, to improve the
 accurate selection of this thresholding value, we use otsu's thresholding
-Biodal image(an image which histogram contains 2 peaks), so approximate 
+Bimodal image(an image which histogram contains 2 peaks), so approximate 
 threshold value as middle of both peak values.
 
 function:- cv2.THRESH_OTSU()
@@ -34,5 +34,5 @@ th- thresholded image
 Functioning of OTSU's Binarization:-
 Calculate probability, mean and variance of t-thresholded images 
 and minimize weigthed within class variance
-  varw(t)=varf(t)*sumofpixels(1,t)+varb(t)*sumofpixels(t+1,n)
+varw(t)=varf(t)*sumofpixels(1,t)+varb(t)*sumofpixels(t+1,n)
    
