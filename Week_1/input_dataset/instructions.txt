@@ -1,2 +1,4 @@
 First image must be separated.
 More than 2 image is necessary.
+
+NOTE: file names must be sorted as per the video order
