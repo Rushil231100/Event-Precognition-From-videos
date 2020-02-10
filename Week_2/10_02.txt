@@ -1,0 +1,49 @@
+Threshold value: 20/30 but no binarization was observed.
+1.Noise was blurred by 4 methods:
+   Averaging
+   Median blurr
+   Gaussian Bluur
+   Bilateral Filter
+   No improvement observed
+   To uniformalize the background, resize() function was also used that resized 256*256 image, but still same problem observed.
+
+630 Contoures were observed.
+Hard to identify contoure of a particualr object in image.
+
+Gaussian:- 21,21 
+        th=40
+
+New approach:- Will find xcentroid and ycentroid of an image by summing all contoures's xcentroid and ycentroid, now subtract values of 2 consecutive frames and repeat till all the frames.
+Differenec of 2 consecutive centroids should represent new centroid of path(trajeectory) of moving object.
+Bug:- While an object is moving its's contour may change drastically from the first frame to last frame.   
+xcent=(x+w/2)    
+ycent=(y+h/2)    
+frame1-- 14279
+         6143.5                 
+frame2-- 15381
+         5988.0
+framelast--14250
+          5035.0
+
+Exploring different methods by changing thresholding values for different blurring.
+
+=>  get all contoures in an image
+    and for that contour draw a rectangle
+
+Lucas-Kanade Principle
+
+Apply the function:-     cv2.absdiff(img1,img2) will subtract the static background  
+
+
+Moral:- Minimize the numbers of contour to get more accurate difference and draw 
+Most optimized approach -- 
+Apply absdiff(current_image,previous_image) to get difference of 2 frames and store it as diff_img.
+Apply averaging blurring and BINARY threshold with threshold value as 40 on diff_img.
+Now compute all the contoures of  diff_img and compute xcentroid and ycentroid by approximation(assuming the maximum area contoure as final contoure which will participate in path formation)
+perform these steps for each 2 consecutive frames and draw the final path of moving object.
+
+
+
+
+
+
