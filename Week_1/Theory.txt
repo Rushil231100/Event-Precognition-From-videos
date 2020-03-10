@@ -36,3 +36,4 @@ Calculate probability, mean and variance of t-thresholded images
 and minimize weigthed within class variance
 varw(t)=varf(t)*sumofpixels(1,t)+varb(t)*sumofpixels(t+1,n)
    
+repots must be submitted later
