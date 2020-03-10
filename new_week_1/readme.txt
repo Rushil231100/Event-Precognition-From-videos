@@ -1,0 +1,5 @@
+This folders are cloned from repository of Ayush Chaurasia.
+To input videos, be sure that its an .avi file.
+rename your file as video.avi
+insert in the folder.
+run the code detect_video.py in IDLE or VScode
