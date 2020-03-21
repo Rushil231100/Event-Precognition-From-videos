@@ -7,3 +7,6 @@ Reading material:
 
 Further insights in theory:
 https://www.youtube.com/watch?v=chVamXQp9so
+
+For Basics On Color Combinations:
+https://www.geeksforgeeks.org/computer-graphics-the-rgb-color-model/
