@@ -33,7 +33,7 @@ rectangleColor = (0, 255, 0)
 frameCounter = 0
 currentCarID = 0
 fps = 0
-
+num=0
 carTracker = {}
 carNumbers = {}
 carLocation1 = {}
@@ -79,6 +79,10 @@ for i in range(   len(files)):
         #print('Removing carID ' + str(carID) + ' previous location.')
         #print('Removing carID ' + str(carID) + ' current location.')
         print('Event detected: Object is going out from the video whose ID is : ' + str(carID) )
+        ROI = frame[y:y+3*h, x:x+3*w]
+        cv2.imwrite('R_{}.png'.format(num), ROI)
+        cv2.rectangle(frame,(x,y),(x+3*w,y+3*h),(36,255,12),0)
+        num+=1
         carTracker.pop(carID, None)
         carLocation1.pop(carID, None)
         carLocation2.pop(carID, None)
@@ -116,6 +120,14 @@ for i in range(   len(files)):
             if matchCarID is None:
                 #print('Creating new tracker ' + str(currentCarID))
                 print('Event detected : New object is coming with contour ID : '+ str(currentCarID) )
+                #cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
+                #cv2.imwrite('pic'+str(num)+'.jpg', frame)
+
+
+                ROI = frame[y:y+3*h, x:x+3*w]
+                cv2.imwrite('ROI_{}.png'.format(num), ROI)
+                cv2.rectangle(frame,(x,y),(x+3*w,y+3*h),(36,255,12),0)
+                num+=1
 
                 tracker = dlib.correlation_tracker()
                 tracker.start_track(
@@ -162,6 +174,9 @@ for i in range(   len(files)):
                     cv2.putText(resultImage, str(int(speed[i])) + " km/hr", (int(x1 + w1/2), int(y1-5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), 2)
                     if speed[i]>80:
                         print('Event prediction : Current speed of the object with ID '+str(i)+' is above the standerd speed, may lead to accident '+'Current speed is : ' + str(int(speed[i])) + 'km/hr')
+                        #cv2.SaveImage('pic'+str(num)+'.jpg', resultImage)
+                        #cv2.imwrite('pic'+str(num)+'.jpg', resultImage)
+                        #num+=1
     cv2.imshow("Detections", resultImage)
     key = cv2.waitKey(1) & 0xFF
     if key == ord('q'):
